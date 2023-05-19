@@ -1,11 +1,11 @@
-# name: purple-tentacle
+# name: delete-topic-ui
 # about: A sample plugin showing how to add a plugin route
 # version: 0.1
-# authors: Robin Ward
-# url: https://github.com/discourse/purple-tentacle
+# authors: kbizsoft
+# url: https://github.com/discourse/delete-topic-ui
 
-add_admin_route 'purple_tentacle.title', 'purple-tentacle'
+add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
 Discourse::Application.routes.append do
-  get '/admin/plugins/purple-tentacle' => 'admin/plugins#index'
+  get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
 end

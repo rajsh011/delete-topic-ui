@@ -2,7 +2,7 @@ import { acceptance } from "helpers/qunit-helpers";
 acceptance("Purple Tentacle", { loggedIn: true });
 
 test("Purple tentacle button works", assert => {
-  visit("/admin/plugins/purple-tentacle");
+  visit("/admin/plugins/delete-topic-ui");
 
   andThen(() => {
     assert.ok(exists('#show-tentacle'), "it shows the purple tentacle button");
@@ -15,5 +15,5 @@ test("Purple tentacle button works", assert => {
     assert.ok(exists('.tentacle'), "the tentacle wants to rule the world!");
   });
 
-
+ 
 });
