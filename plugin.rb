@@ -8,8 +8,8 @@ add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
 after_initialize do
   require_dependency 'application_controller'
-  
-  class DeleteUserPostsController < ApplicationController
+
+  class DeleteUserPostssController < ApplicationController
     #  before_action :ensure_admin, only: [:delete_all_posts]
     
       def delete_all_posts
@@ -35,5 +35,5 @@ after_initialize do
 end
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
-  post '/delete_user_posts/delete_all_posts' => 'delete_user_posts#delete_all_posts'
+  post '/delete_user_posts/delete_all_posts' => 'delete_user_postss#delete_all_posts'
 end
