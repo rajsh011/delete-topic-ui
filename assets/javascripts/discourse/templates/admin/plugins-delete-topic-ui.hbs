@@ -8,8 +8,11 @@
   {{d-button label="delete_topic_ui.show" action="showTentacle" icon="eye" id='show-tentacle'}}
 </div>
  
+ <div class='buttons'>
+  {{d-button label="delete_topic_ui.delete" action="deletePosts" icon="eye" id='deletePosts'}}
+</div>
  <h3>Delete User Posts</h3>
-{{#form-element}}
+{{!-- {{#form-element}}
   <label>
     Username:
     {{input type="text" value=deleteUserPostsUsername}}
@@ -21,4 +24,4 @@
   </label>
   <br>
   <button {{action "deletePosts"}}>Delete Posts</button>
-{{/form-element}}
+{{/form-element}} --}}

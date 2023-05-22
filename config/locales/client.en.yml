@@ -3,6 +3,7 @@ en:
     delete_topic_ui:
       title: "Delete topic UI "
       show: "Show Delete topic UI button"
+      delete: "Start post deletion "
   site_settings:
     delete_user_topics_enabled: 'Enable Delete users posts plugin.'
     delete_posts_for_username: 'Delete Posts for username'
