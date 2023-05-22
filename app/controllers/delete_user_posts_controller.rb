@@ -1,5 +1,5 @@
 class DeleteUserPostsController < ApplicationController
-    before_action :ensure_admin, only: [:execute_ruby_code]
+  #  before_action :ensure_admin, only: [:delete_all_posts]
   
     def delete_all_posts
  #     username = params[:username]
