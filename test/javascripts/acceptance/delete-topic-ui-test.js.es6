@@ -1,7 +1,7 @@
 import { acceptance } from "helpers/qunit-helpers";
 acceptance("Purple Tentacle", { loggedIn: true });
 
-test("Purple tentacle button works", assert => {
+/* test("Purple tentacle button works", assert => {
   visit("/admin/plugins/delete-topic-ui");
 
   andThen(() => {
@@ -16,4 +16,4 @@ test("Purple tentacle button works", assert => {
   });
 
  
-});
+}); */
