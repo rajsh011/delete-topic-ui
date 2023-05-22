@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   actions: {
     deletePosts() {
       ajax('/delete_user_posts/delete_all_posts', {
-        type: 'POST',
+        type: 'GET',
         data: {
           // Include any data you want to send to the server in the request body
           // Example: param1: 'value1', param2: 'value2'
