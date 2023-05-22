@@ -8,4 +8,5 @@ add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
+  get '/delete-topic-ui/delete' => 'delete_user_posts_controller#delete_all_posts'
 end

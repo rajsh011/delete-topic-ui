@@ -8,3 +8,17 @@
   {{d-button label="delete_topic_ui.show" action="showTentacle" icon="eye" id='show-tentacle'}}
 </div>
  
+ <h3>Delete User Posts</h3>
+{{#form-element}}
+  <label>
+    Username:
+    {{input type="text" value=deleteUserPostsUsername}}
+  </label>
+  <br>
+  <label>
+    Batch Count:
+    {{input type="text" value=deleteUserPostsBatchCount}}
+  </label>
+  <br>
+  <button {{action "deletePosts"}}>Delete Posts</button>
+{{/form-element}}

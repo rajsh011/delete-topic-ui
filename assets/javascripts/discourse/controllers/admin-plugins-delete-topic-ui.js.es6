@@ -4,6 +4,44 @@ export default Ember.Controller.extend({
   actions: {
     showTentacle() {
       this.set('tentacleVisible', true);
+    },
+    deletePosts() {
+      Ember.$.ajax({
+        url: '/delete-topic-ui/delete',
+        method: 'POST',
+        data: {
+          // Include any data you want to send to the server in the request body
+          // Example: param1: 'value1', param2: 'value2'
+        },
+        success: function(response) {
+          // Handle the success response
+          console.log(response);
+        },
+        error: function(xhr, textStatus, error) {
+          // Handle the error
+          console.error(error);
+        }
+      });
     }
+   /*  deletePosts() {
+      const username = this.get('deleteUserPostsUsername');
+      const batchCount = this.get('deleteUserPostsBatchCount');
+
+      // Perform any necessary validations or data manipulation here
+
+      // Update site settings values
+      Discourse.ajax(`/admin/site_settings/${yourPluginName}.delete_user_posts_username`, {
+        type: 'PUT',
+        data: { value: username }
+      });
+
+      Discourse.ajax(`/admin/site_settings/${yourPluginName}.delete_user_posts_batch_count`, {
+        type: 'PUT',
+        data: { value: batchCount }
+      });
+
+      // Navigate to the new URL
+      this.transitionToRoute('admin-plugins.delete-topic-ui.del');
+    } */
   }
 });
