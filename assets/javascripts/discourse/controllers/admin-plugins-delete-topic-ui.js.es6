@@ -3,7 +3,7 @@ import { ajax } from 'discourse/lib/ajax';
 export default Ember.Controller.extend({
   actions: {
     deletePosts() {
-      ajax('/delete-topic-ui/delete', {
+      ajax('/delete_user_posts/delete_all_posts', {
         type: 'POST',
         data: {
           // Include any data you want to send to the server in the request body
