@@ -1,3 +1,5 @@
+import { ajax } from 'discourse/lib/ajax';
+
 export default Ember.Controller.extend({
   tentacleVisible: false,
 
@@ -5,24 +7,25 @@ export default Ember.Controller.extend({
     showTentacle() {
       this.set('tentacleVisible', true);
     },
+
     deletePosts() {
-      Ember.$.ajax({
-        url: '/delete-topic-ui/delete',
-        method: 'POST',
+      ajax('/delete-topic-ui/delete', {
+        type: 'POST',
         data: {
           // Include any data you want to send to the server in the request body
           // Example: param1: 'value1', param2: 'value2'
-        },
-        success: function(response) {
+        }
+      })
+        .then(response => {
           // Handle the success response
           console.log(response);
-        },
-        error: function(xhr, textStatus, error) {
+        })
+        .catch(error => {
           // Handle the error
           console.error(error);
-        }
-      });
+        });
     }
+
    /*  deletePosts() {
       const username = this.get('deleteUserPostsUsername');
       const batchCount = this.get('deleteUserPostsBatchCount');

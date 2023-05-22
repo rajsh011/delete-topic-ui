@@ -9,7 +9,8 @@
 </div>
  
  <div class='buttons'>
-  {{d-button label="delete_topic_ui.delete" action="deletePosts" icon="eye" id='deletePosts'}}
+  {{!-- {{d-button label="delete_topic_ui.delete" action="deletePosts" icon="eye" id='deletePosts'}} --}}
+  {{d-button label="Delete Posts" action=(action "deletePosts")}}
 </div>
  <h3>Delete User Posts</h3>
 {{!-- {{#form-element}}
