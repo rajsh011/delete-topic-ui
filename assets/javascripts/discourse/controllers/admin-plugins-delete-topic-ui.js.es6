@@ -1,13 +1,7 @@
 import { ajax } from 'discourse/lib/ajax';
 
 export default Ember.Controller.extend({
-  tentacleVisible: false,
-
   actions: {
-    showTentacle() {
-      this.set('tentacleVisible', true);
-    },
-
     deletePosts() {
       ajax('/delete-topic-ui/delete', {
         type: 'POST',
