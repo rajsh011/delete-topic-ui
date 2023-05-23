@@ -18,8 +18,41 @@ export default Ember.Controller.extend({
           // Handle the error
           console.error(error);
         });
+    },
+    test() {
+      ajax('/test', {
+        type: 'GET',
+        data: {
+          // Include any data you want to send to the server in the request body
+          // Example: param1: 'value1', param2: 'value2'
+        }
+      })
+        .then(response => {
+          // Handle the success response
+          console.log(response);
+        })
+        .catch(error => {
+          // Handle the error
+          console.error(error);
+        });
+    },
+    testjob() {
+      ajax('/test', {
+        type: 'GET',
+        data: {
+          // Include any data you want to send to the server in the request body
+          // Example: param1: 'value1', param2: 'value2'
+        }
+      })
+        .then(response => {
+          // Handle the success response
+          console.log(response);
+        })
+        .catch(error => {
+          // Handle the error
+          console.error(error);
+        });
     }
-
    /*  deletePosts() {
       const username = this.get('deleteUserPostsUsername');
       const batchCount = this.get('deleteUserPostsBatchCount');
