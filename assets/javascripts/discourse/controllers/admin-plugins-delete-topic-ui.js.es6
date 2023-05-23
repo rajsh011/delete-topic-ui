@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
         });
     },
     testjob() {
-      ajax('/test', {
+      ajax('/testjob', {
         type: 'GET',
         data: {
           // Include any data you want to send to the server in the request body
