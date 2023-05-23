@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Jobs
-  class DeleteUserPosts < ::Jobs::Scheduled
+  class DeleteUserPostsJob < ::Jobs::Scheduled
     every 2.minutes
 
     def execute(args)

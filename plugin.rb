@@ -24,7 +24,7 @@ Discourse::Application.routes.append do
   get '/admin/plugins/delete_all_posts' => 'delete_user_posts#delete_all_posts'
   get '/test' => proc { |_env| [200, {}, ['This is a test route']] }
   get '/testjob' => proc { |_env|
-  Jobs.enqueue(:delete_user_posts)
+  Jobs.enqueue(:delete_user_posts_job)
   [200, {}, ['Job enqueued']]
 }
 
