@@ -8,8 +8,7 @@ export default Ember.Controller.extend({
         data: {
           // Include any data you want to send to the server in the request body
           // Example: param1: 'value1', param2: 'value2'
-        },
-        dataType: 'text'
+        } 
       })
         .then(response => {
           // Handle the success response
@@ -26,7 +25,8 @@ export default Ember.Controller.extend({
         data: {
           // Include any data you want to send to the server in the request body
           // Example: param1: 'value1', param2: 'value2'
-        }
+        },
+        dataType: 'text'
       })
         .then(response => {
           // Handle the success response
