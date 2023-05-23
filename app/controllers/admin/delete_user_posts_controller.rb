@@ -12,6 +12,9 @@ class DeleteUserPostsController < ApplicationController
       else
         redirect_to admin_index_path, alert: "User not found."
       end
+
+      render json: { error: 'success' }, status: :success
+
     end
 
     def ensure_admin
