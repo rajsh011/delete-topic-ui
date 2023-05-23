@@ -5,6 +5,7 @@
 # url: https://github.com/discourse/delete-topic-ui
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
+load File.expand_path('app/controllers/delete_user_posts_controller.rb', __dir__)
 
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
