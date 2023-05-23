@@ -6,7 +6,7 @@
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 #load File.expand_path('app/controllers/delete_user_posts_controller.rb', __dir__)
-
+require_dependency File.expand_path("../app/controllers/delete_user_posts_controller.rb", __FILE__)
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
   get '/admin/plugins/delete_all_posts' => 'delete_user_posts#delete_all_posts'
