@@ -36,9 +36,11 @@ get '/test' => proc { |_env|
   if user
     #PostDestroyer.new(current_user).destroy_all_posts(user)
     Post.where(user_id: user.id).destroy_all
-    redirect_to admin_index_path, notice: "All posts by #{username} have been deleted."
+   # redirect_to admin_index_path, notice: "All posts by #{username} have been deleted."
+   [200, {}, ['This is a test route']]
   else
-    redirect_to admin_index_path, alert: "User not found."
+   # redirect_to admin_index_path, alert: "User not found."
+   [200, {}, ['This is a test route 2']]
   end
 
   # Return the response
