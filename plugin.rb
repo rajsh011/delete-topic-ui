@@ -20,9 +20,9 @@ end
 =end
 
 Discourse::Application.routes.append do
- # get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
+  get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
  # get '/admin/plugins/delete_all_posts' => 'admin/delete_user_posts#delete_all_posts'
-  #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
+ #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
  # get '/test' => proc { |_env| [200, {}, ['This is a test route']] }
 get '/test' => proc { |_env|
   # Execute code specific to the '/test' route
