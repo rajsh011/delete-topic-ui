@@ -24,7 +24,7 @@ Discourse::Application.routes.append do
  # get '/admin/plugins/delete_all_posts' => 'admin/delete_user_posts#delete_all_posts'
  #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
  # get '/test' => proc { |_env| [200, {}, ['This is a test route']] }
-get '/test' => proc { |_env|
+get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
   username = SiteSetting.delete_posts_for_username
   user = User.find_by_username_or_email(username)
