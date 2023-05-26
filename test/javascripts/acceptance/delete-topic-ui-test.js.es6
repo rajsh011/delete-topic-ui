@@ -1,18 +1,18 @@
 import { acceptance } from "helpers/qunit-helpers";
-acceptance("Purple Tentacle", { loggedIn: true });
+acceptance("Delete Topics ", { loggedIn: true });
 
-/* test("Purple tentacle button works", assert => {
+/* test("Delete Topics  button works", assert => {
   visit("/admin/plugins/delete-topic-ui");
 
   andThen(() => {
-    assert.ok(exists('#show-tentacle'), "it shows the purple tentacle button");
-    assert.ok(!exists('.tentacle'), "the tentacle is not shown yet");
+    assert.ok(exists('#show-delete _topics '), "it shows the Delete Topics  button");
+    assert.ok(!exists('.delete _topics '), "the delete _topics  is not shown yet");
   });
 
-  click('#show-tentacle');
+  click('#show-delete _topics ');
 
   andThen(() => {
-    assert.ok(exists('.tentacle'), "the tentacle wants to rule the world!");
+    assert.ok(exists('.delete _topics '), "the delete _topics  wants to rule the world!");
   });
 
  

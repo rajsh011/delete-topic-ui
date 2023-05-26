@@ -31,10 +31,12 @@ export default Ember.Controller.extend({
       })
         .then(response => {
           // Handle the success response
+          document.querySelector("p.response.notice").innerHTML= response;
           console.log(response);
         })
         .catch(error => {
           // Handle the error
+          document.querySelector("p.response.notice").innerHTML= "Error deleting posts something unusual happned at server side for more information check console and error log file";
           console.error(error);
         });
     },

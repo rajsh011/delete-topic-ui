@@ -34,17 +34,13 @@ get '/test' => proc { |_env|
   user = User.find_by_username_or_email(username)
 
   if user
-    #PostDestroyer.new(current_user).destroy_all_posts(user)
     Post.where(user_id: user.id).destroy_all
-   # redirect_to admin_index_path, notice: "All posts by #{username} have been deleted."
-   [200, {}, ['This is a test route']]
+   [200, {}, ['Deleting all posts for user ']]
   else
    # redirect_to admin_index_path, alert: "User not found."
-   [200, {}, ['This is a test route 2']]
+   [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
   end
 
-  # Return the response
-  [200, {}, ['This is a test route']]
 }
 
 
