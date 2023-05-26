@@ -44,6 +44,7 @@ export default Ember.Controller.extend({
         });
     },
   },
+  @discourseComputed()
   userName(){
     //return "skyscraper_1";
     return this.siteSettings.delete_posts_for_username ;
