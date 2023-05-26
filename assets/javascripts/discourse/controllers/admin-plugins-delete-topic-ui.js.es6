@@ -1,5 +1,10 @@
-import { ajax } from 'discourse/lib/ajax';
+import { ajax } from 'discourse/lib/ajax'
 import discourseComputed, { on } from "discourse-common/utils/decorators";
+import loadScript from "discourse/lib/load-script";
+import { alias } from "@ember/object/computed";
+import RSVP from "rsvp";
+import { isTesting } from "discourse-common/config/environment";
+import { htmlSafe } from "@ember/template";
 
 export default Ember.Controller.extend({
   actions: {
