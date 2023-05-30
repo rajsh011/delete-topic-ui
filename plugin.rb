@@ -29,6 +29,8 @@ Discourse::Application.routes.append do
     req = Rack::Request.new(env)
     settings = req.params['settings']
 
+    puts "Received settings: #{settings}"
+
     # Perform the necessary logic to save the settings
     SiteSetting.delete_posts_for_username = settings[:delete_posts_for_username]
     SiteSetting.delete_posts_in_single_batch = settings[:delete_posts_in_single_batch]
@@ -36,7 +38,7 @@ Discourse::Application.routes.append do
     SiteSetting.delete_user_topics_dry_run = settings[:delete_user_topics_dry_run]
 
     # Return a success response
-    [200, {}, [{ success: true }.to_json]]
+    [200, {}, [settings.to_json]]
 }
 get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
