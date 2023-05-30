@@ -23,7 +23,20 @@ Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
  # get '/admin/plugins/delete_all_posts' => 'admin/delete_user_posts#delete_all_posts'
  #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
- # get '/test' => proc { |_env| [200, {}, ['This is a test route']] }
+ get '/admin/plugins/save_settings' => proc { |_env|
+  # Retrieve the settings data from the request parameters
+      settings = params.require(:settings)
+
+  # Perform the necessary logic to save the settings
+  # For example, you can update the values in the site settings
+  SiteSetting.delete_posts_for_username = settings[:delete_posts_for_username]
+  SiteSetting.delete_posts_in_single_batch = settings[:delete_posts_in_single_batch]
+  SiteSetting.delete_user_topics_enabled = settings[:delete_user_topics_enabled]
+  SiteSetting.delete_user_topics_dry_run = settings[:delete_user_topics_dry_run]
+
+  # Return a success response
+  render json: { success: true }
+ }
 get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
   username = SiteSetting.delete_posts_for_username

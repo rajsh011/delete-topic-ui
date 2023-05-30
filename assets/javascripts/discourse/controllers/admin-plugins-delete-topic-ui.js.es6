@@ -49,6 +49,32 @@ export default Ember.Controller.extend({
         });
     },
   },
+  saveSettings() {
+    const deletePostsForUsername = document.getElementById('delete_posts_for_username').value;
+    const deletePostsInSingleBatch = document.getElementById('delete_posts_in_single_batch').value;
+    const deleteUserTopicsEnabled = document.getElementById('delete_user_topics_enabled').checked;
+    const deleteUserTopicsDryRun = document.getElementById('delete_user_topics_dry_run').checked;
+
+    // Perform the necessary logic to save the updated settings, e.g., via AJAX request or other method
+    ajax('/admin/plugins/save_settings', {
+      type: 'PUT',
+      data: {
+        settings: data
+      }
+    })
+      .then(response => {
+        // Handle the success response
+        console.log('Settings saved:', response);
+        // Optionally display a success message to the user
+      })
+      .catch(error => {
+        // Handle the error response
+        console.error('Error saving settings:', error);
+        // Optionally display an error message to the user
+      }); 
+    // Prevent the form from submitting
+    return false;
+  },
   @discourseComputed("this.siteSettings.delete_posts_for_username")
   userName(){
     //return "skyscraper_1";
