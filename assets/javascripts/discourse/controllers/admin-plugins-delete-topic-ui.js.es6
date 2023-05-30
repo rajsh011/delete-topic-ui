@@ -54,7 +54,12 @@ export default Ember.Controller.extend({
     const deletePostsInSingleBatch = document.getElementById('delete_posts_in_single_batch').value;
     const deleteUserTopicsEnabled = document.getElementById('delete_user_topics_enabled').checked;
     const deleteUserTopicsDryRun = document.getElementById('delete_user_topics_dry_run').checked;
-
+    const data = {
+      delete_posts_for_username: deletePostsForUsername,
+      delete_posts_in_single_batch: deletePostsInSingleBatch,
+      delete_user_topics_enabled: deleteUserTopicsEnabled,
+      delete_user_topics_dry_run: deleteUserTopicsDryRun
+    }
     // Perform the necessary logic to save the updated settings, e.g., via AJAX request or other method
     ajax('/admin/plugins/save_settings', {
       type: 'PUT',
