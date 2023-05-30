@@ -31,9 +31,11 @@ Discourse::Application.routes.append do
 
     # Perform the necessary logic to save the settings
     SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
+=begin 
     SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
     SiteSetting.delete_user_topics_enabled = settings['delete_user_topics_enabled']
-    SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run']
+    SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
+=end
 
     # Return a success response
     [200, {}, [settings.to_json]]
