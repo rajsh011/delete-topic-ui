@@ -25,19 +25,19 @@ Discourse::Application.routes.append do
  #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
 
  #save settings
- get '/admin/plugins/save_settings' => proc { |_env|
-  # Retrieve the settings data from the request parameters
-  settings = params.require(:settings)
+ get '/admin/plugins/save_settings' => proc { |env|
+    req = Rack::Request.new(env)
+    settings = req.params['settings']
 
-  # Perform the necessary logic to save the settings
-  SiteSetting.delete_posts_for_username = settings[:delete_posts_for_username]
-  SiteSetting.delete_posts_in_single_batch = settings[:delete_posts_in_single_batch]
-  SiteSetting.delete_user_topics_enabled = settings[:delete_user_topics_enabled]
-  SiteSetting.delete_user_topics_dry_run = settings[:delete_user_topics_dry_run]
+    # Perform the necessary logic to save the settings
+    SiteSetting.delete_posts_for_username = settings[:delete_posts_for_username]
+    SiteSetting.delete_posts_in_single_batch = settings[:delete_posts_in_single_batch]
+    SiteSetting.delete_user_topics_enabled = settings[:delete_user_topics_enabled]
+    SiteSetting.delete_user_topics_dry_run = settings[:delete_user_topics_dry_run]
 
-  # Return a success response
-  render json: { success: true }
- }
+    # Return a success response
+    [200, {}, [{ success: true }.to_json]]
+}
 get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
   username = SiteSetting.delete_posts_for_username
