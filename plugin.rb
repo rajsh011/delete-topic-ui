@@ -23,6 +23,8 @@ Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
  # get '/admin/plugins/delete_all_posts' => 'admin/delete_user_posts#delete_all_posts'
  #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
+
+ #save settings
  get '/admin/plugins/save_settings' => proc { |_env|
   # Retrieve the settings data from the request parameters
   settings = params.require(:settings)

@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
     }
     // Perform the necessary logic to save the updated settings, e.g., via AJAX request or other method
     ajax('/admin/plugins/save_settings', {
-      type: 'PUT',
+      type: 'GET',
       data: {
         settings: data
       }
