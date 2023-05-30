@@ -29,13 +29,11 @@ Discourse::Application.routes.append do
     req = Rack::Request.new(env)
     settings = req.params['settings']
 
-    puts "Received settings: #{settings}"
-
     # Perform the necessary logic to save the settings
-    SiteSetting.delete_posts_for_username = settings[:delete_posts_for_username]
-    SiteSetting.delete_posts_in_single_batch = settings[:delete_posts_in_single_batch]
-    SiteSetting.delete_user_topics_enabled = settings[:delete_user_topics_enabled]
-    SiteSetting.delete_user_topics_dry_run = settings[:delete_user_topics_dry_run]
+    SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
+    SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
+    SiteSetting.delete_user_topics_enabled = settings['delete_user_topics_enabled']
+    SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run']
 
     # Return a success response
     [200, {}, [settings.to_json]]
