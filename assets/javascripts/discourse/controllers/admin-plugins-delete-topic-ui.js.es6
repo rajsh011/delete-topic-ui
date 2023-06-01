@@ -69,7 +69,7 @@ export default Ember.Controller.extend({
       .then(response => {
         // Handle the success response
         let response_element = document.querySelector("p.response.notice");
-        response_element.innerHTML= response;
+        response_element.innerHTML= "Settings saved successfully";
         if(response_element.classList.contains("hide")){
           response_element.classList.remove('hide');
         setTimeout(function(){
@@ -83,7 +83,7 @@ export default Ember.Controller.extend({
       .catch(error => {
         // Handle the error response
         let response_element = document.querySelector("p.response.notice");
-        response_element.innerHTML= response;
+        response_element.innerHTML= "Error saving settings";
         console.error('Error saving settings:', error);
 
         if(response_element.classList.contains("hide")){
