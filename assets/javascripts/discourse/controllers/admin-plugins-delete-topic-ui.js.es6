@@ -59,6 +59,8 @@ export default Ember.Controller.extend({
 
       delete_user_topics_dry_run: deleteUserTopicsDryRun */
     }
+    let responseElement = document.querySelector("p.response.notice");
+      responseElement.innerHTML = "Deleting all posts for user";
     // Perform the necessary logic to save the updated settings, e.g., via AJAX request or other method
     ajax('/admin/plugins/save_settings', {
       type: 'GET',

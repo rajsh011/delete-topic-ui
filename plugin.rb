@@ -31,7 +31,8 @@ get '/admin/plugins/delete_all_posts' => proc { |_env|
 
   if user
     Post.where(user_id: user.id).destroy_all
-   [200, {}, ['Deleting all posts for user ']]
+    SiteSetting.delete_posts_for_username = ""
+   [200, {}, ['Deleated all posts for user ']]
   else
    # redirect_to admin_index_path, alert: "User not found."
    [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
