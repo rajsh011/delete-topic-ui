@@ -6,24 +6,8 @@
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
-#require_dependency File.expand_path("../app/controllers/delete_user_posts_controller.rb", __FILE__)
-=begin 
-  after_initialize do 
-    require_relative "..app/controllers/delete_user_posts_controller.rb"
-  end 
-=end
-
-=begin 
-after_initialize do
-  require_dependency File.expand_path("../jobs/scheduled/delete_user_posts.rb", __FILE__)
-end 
-=end
-
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
- # get '/admin/plugins/delete_all_posts' => 'admin/delete_user_posts#delete_all_posts'
- #get '/admin/plugins/delete_all_posts', to: 'admin/delete_user_posts#delete_all_posts'
-
  #save settings
  get '/admin/plugins/save_settings' => proc { |env|
     req = Rack::Request.new(env)

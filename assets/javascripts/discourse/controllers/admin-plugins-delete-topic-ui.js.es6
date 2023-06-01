@@ -19,36 +19,34 @@ export default Ember.Controller.extend({
       })
         .then(response => {
           // Handle the success response
-          document.querySelector("p.response.notice").innerHTML= response;
+          response_element = document.querySelector("p.response.notice");
+          response_element.innerHTML= response;
           console.log(response);
+
+          if(response_element.classList.contains("hide")){
+            response_element.classList.remove('hide');
+          setTimeout(function(){
+            response_element.classList.add("hide");
+          },10000);
+  
+        }
+        
         })
         .catch(error => {
           // Handle the error
-          document.querySelector("p.response.notice").innerHTML= "Error deleting posts something unusual happned at server side for more information check console and error log file";
+          response_element = document.querySelector("p.response.notice");
+          response_element.innerHTML= "Error deleting posts something unusual happned at server side for more information check console and error log file";
           console.error(error);
+
+          if(response_element.classList.contains("hide")){
+            response_element.classList.remove('hide');
+          setTimeout(function(){
+            response_element.classList.add("hide");
+          },10000);
+  
+        }
         });
     },
-    test() {
-      ajax('/test', {
-        type: 'GET',
-        data: {
-          // Include any data you want to send to the server in the request body
-          // Example: param1: 'value1', param2: 'value2'
-        },
-        dataType: 'text'
-      })
-        .then(response => {
-          // Handle the success response
-          document.querySelector("p.response.notice").innerHTML= response;
-          console.log(response);
-        })
-        .catch(error => {
-          // Handle the error
-          document.querySelector("p.response.notice").innerHTML= "Error deleting posts something unusual happned at server side for more information check console and error log file";
-          console.error(error);
-        });
-    },
-  },
   saveSettings() {
     const deletePostsForUsername = document.getElementById('delete_posts_for_username').value;
   /*   const deletePostsInSingleBatch = document.getElementById('delete_posts_in_single_batch').value;
@@ -58,6 +56,7 @@ export default Ember.Controller.extend({
       delete_posts_for_username: deletePostsForUsername,
    /*    delete_posts_in_single_batch: deletePostsInSingleBatch,
       delete_user_topics_enabled: deleteUserTopicsEnabled,
+
       delete_user_topics_dry_run: deleteUserTopicsDryRun */
     }
     // Perform the necessary logic to save the updated settings, e.g., via AJAX request or other method
@@ -69,12 +68,31 @@ export default Ember.Controller.extend({
     })
       .then(response => {
         // Handle the success response
+        response_element = document.querySelector("p.response.notice");
+        response_element.innerHTML= response;
+        if(response_element.classList.contains("hide")){
+          response_element.classList.remove('hide');
+        setTimeout(function(){
+          response_element.classList.add("hide");
+        },10000);
+
+      }
         console.log('Settings saved:', response);
         // Optionally display a success message to the user
       })
       .catch(error => {
         // Handle the error response
+        response_element = document.querySelector("p.response.notice");
+        response_element.innerHTML= response;
         console.error('Error saving settings:', error);
+
+        if(response_element.classList.contains("hide")){
+          response_element.classList.remove('hide');
+        setTimeout(function(){
+          response_element.classList.add("hide");
+        },10000);
+
+      }
         // Optionally display an error message to the user
       }); 
     // Prevent the form from submitting
@@ -85,4 +103,5 @@ export default Ember.Controller.extend({
     //return "skyscraper_1";
     return this.siteSettings.delete_posts_for_username ;
 }
+  }
 });

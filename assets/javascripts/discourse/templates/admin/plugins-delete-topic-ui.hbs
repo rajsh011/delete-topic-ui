@@ -1,6 +1,6 @@
  <h3>Delete All posts for user</h3>
 
-<p class= "response notice">ENTER the user name and then save settings.</p>
+<p class= "text">ENTER the user name and then save settings.</p>
 
 <form {{action "saveSettings" on="submit"}}>
   <label for="delete_posts_for_username">Delete Posts For User:</label>
@@ -17,8 +17,8 @@
 
   <button type="submit">Save Settings</button>
 </form>
-
-<p class= "response notice">Click start post Deletion To delete all posts for user.</p>
+<p class="response notice hide" style=" background: #919191; text-align: center; padding: 20px; font-weight: 700; font-size: 18px; color: white;"></p>
+<p class= "text">Click start post Deletion To delete all posts for user.</p>
  <div class='buttons'>
  
   {{d-button label="delete_topic_ui.delete" action=(action "deletePosts") icon="eye"}}
