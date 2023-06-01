@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
       })
         .then(response => {
           // Handle the success response
-          response_element = document.querySelector("p.response.notice");
+          let response_element = document.querySelector("p.response.notice");
           response_element.innerHTML= response;
           console.log(response);
 
@@ -30,11 +30,11 @@ export default Ember.Controller.extend({
           },10000);
   
         }
-        
+
         })
         .catch(error => {
           // Handle the error
-          response_element = document.querySelector("p.response.notice");
+          let response_element = document.querySelector("p.response.notice");
           response_element.innerHTML= "Error deleting posts something unusual happned at server side for more information check console and error log file";
           console.error(error);
 
@@ -68,7 +68,7 @@ export default Ember.Controller.extend({
     })
       .then(response => {
         // Handle the success response
-        response_element = document.querySelector("p.response.notice");
+        let response_element = document.querySelector("p.response.notice");
         response_element.innerHTML= response;
         if(response_element.classList.contains("hide")){
           response_element.classList.remove('hide');
@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
       })
       .catch(error => {
         // Handle the error response
-        response_element = document.querySelector("p.response.notice");
+        let response_element = document.querySelector("p.response.notice");
         response_element.innerHTML= response;
         console.error('Error saving settings:', error);
 
