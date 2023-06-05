@@ -47,7 +47,8 @@ Discourse::Application.routes.append do
     
     if userobj
         #require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
-        ::Jobs::DeleteUserPostsJob.enqueue
+        #::Jobs::DeleteUserPostsJob.enqueue
+        ::Jobs::Scheduled::DeleteUserPostsJob.enqueue
 
        [200, {}, ['Cron job for deleting user posts has been scheduled']] 
 
