@@ -15,16 +15,15 @@ Discourse::Application.routes.append do
 
     # Perform the necessary logic to save the settings
     SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
-=begin 
     SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
     SiteSetting.delete_user_topics_enabled = settings['delete_user_topics_enabled']
     SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
-=end
+
 
     # Return a success response
     [200, {}, [settings.to_json]]
 }
-get '/admin/plugins/delete_all_posts' => proc { |_env|
+=begin get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
   username = SiteSetting.delete_posts_for_username
   user = User.find_by_username_or_email(username)
@@ -38,7 +37,31 @@ get '/admin/plugins/delete_all_posts' => proc { |_env|
    [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
   end
 
-}
+} 
+=end
+  get '/admin/plugins/delete_all_posts' => proc { |_env|
+    # Execute code specific to the '/test' route
+    uname = SiteSetting.delete_posts_for_username
+    userobj = User.find_by_username_or_email(uname)
+    uposts = userobj.posts.order(created_at: :asc)
+  
+    
+    if userobj
+      if uposts.size >= 1000
+        require_dependency File.expand_path("../jobs/scheduled/delete_user_posts.rb", __FILE__)    
+        etime = uposts.size / SiteSetting.delete_posts_in_single_batch * 2   
+        [200, {}, ['Crom job for deleting posts have been scheduled to delete #{SiteSetting.delete_posts_in_single_batch} posts every 2 minutes. Total estimated time #{etime}. Cron Job will be canceled automatically once all posts have been deleted']]
+      else
+        Post.where(user_id: userobj.id).destroy_all
+        SiteSetting.delete_posts_for_username = ""
+        [200, {}, ['Deleated all posts for user ']]
+      end
+    else
+      # redirect_to admin_index_path, alert: "User not found."
+      [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
+    end
+
+  }
 
 
 end
