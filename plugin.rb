@@ -5,6 +5,20 @@
 # url: https://github.com/discourse/delete-topic-ui
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
+require_dependency File.expand_path('../lib/jobs/scheduled/delete_all_posts', __FILE__)
+
+Discourse::Application.routes.append do
+  # ...
+
+  get '/admin/plugins/delete_all_posts' => proc { |_env|
+    # Execute code specific to the '/admin/plugins/delete_all_posts' route
+    Jobs::Scheduled::DeleteAllPosts.enqueue
+
+    [200, {}, ['Cron job for deleting all posts has been scheduled']]
+  }
+
+  # ...
+end
 
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
@@ -49,13 +63,15 @@ Discourse::Application.routes.append do
         #require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
         #::Jobs::DeleteUserPostsJob.enqueue
         #::Jobs::Scheduled::DeleteUserPostsJob.enqueue
+
         # Require the job file to load the job class
-         require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'app', 'jobs', 'scheduled', 'delete_user_posts_job')
+        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'app', 'jobs', 'scheduled', 'delete_user_posts_job')
 
         # Start the cron job to delete posts for the specified user
-        ::Jobs::Scheduled::DeleteUserPostsJob.enqueue
+        #::Jobs::Scheduled::DeleteUserPostsJob.enqueue
 
-       [200, {}, ['Cron job for deleting user posts has been scheduled']] 
+        Jobs::Scheduled::DeleteAllPosts.enqueue
+        [200, {}, ['Cron job for deleting user posts has been scheduled']] 
 
     else
       # redirect_to admin_index_path, alert: "User not found."
