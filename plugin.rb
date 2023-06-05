@@ -46,7 +46,8 @@ Discourse::Application.routes.append do
     uposts = userobj.posts.order(created_at: :asc) 
     
     if userobj
-        require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__)    
+        #require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
+        Jobs.enqueue(:delete_user_posts_job)   
         etime = uposts.size / SiteSetting.delete_posts_in_single_batch * 2   
         [200, {}, ['Crom job for deleting posts have been scheduled to delete #{SiteSetting.delete_posts_in_single_batch} posts every 2 minutes. Total estimated time #{etime}. Cron Job will be canceled automatically once all posts have been deleted']]
     else
