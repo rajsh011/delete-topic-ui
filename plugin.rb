@@ -33,7 +33,7 @@ Discourse::Application.routes.append do
     SiteSetting.delete_user_topics_enabled = settings['delete_user_topics_enabled']
     SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
 
-
+ 
     # Return a success response
     [200, {}, [settings.to_json]]
 }
