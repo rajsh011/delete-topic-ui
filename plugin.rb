@@ -43,8 +43,7 @@ Discourse::Application.routes.append do
     # Execute code specific to the '/test' route
     uname = SiteSetting.delete_posts_for_username
     userobj = User.find_by(username: uname)
-    uposts = userobj.posts.order(created_at: :asc)
-  
+    uposts = userobj.posts.order(created_at: :asc) 
     
     if userobj
         require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts.rb", __FILE__)    
