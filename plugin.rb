@@ -5,7 +5,7 @@
 # url: https://github.com/discourse/delete-topic-ui
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
-require_dependency File.expand_path('../lib/jobs/scheduled/delete_all_posts', __FILE__)
+require_dependency File.expand_path('../lib/jobs/scheduled/delete_all_posts', __dir__)
 
 Discourse::Application.routes.append do
   # ...
