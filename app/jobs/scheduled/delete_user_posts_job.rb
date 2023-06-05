@@ -5,6 +5,7 @@ module Jobs
     every 2.minutes
 
     def execute(args)
+      Rails.logger.error("task executed")
       return unless SiteSetting.delete_user_topics_enabled?
 
       username = SiteSetting.delete_posts_for_username
