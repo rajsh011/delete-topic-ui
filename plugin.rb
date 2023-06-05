@@ -31,7 +31,7 @@ Discourse::Application.routes.append do
   if user
     Post.where(user_id: user.id).destroy_all
     SiteSetting.delete_posts_for_username = ""
-   [200, {}, ['Deleated all posts for user ']]
+   [200, {}, ['Deleated all posts for user ']]  
   else
    # redirect_to admin_index_path, alert: "User not found."
    [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
