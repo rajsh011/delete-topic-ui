@@ -42,7 +42,7 @@ Discourse::Application.routes.append do
   get '/admin/plugins/delete_all_posts' => proc { |_env|
     # Execute code specific to the '/test' route
     uname = SiteSetting.delete_posts_for_username
-    userobj = User.find_by_username_or_email(uname)
+    userobj = User.find_by(username: uname)
     uposts = userobj.posts.order(created_at: :asc)
   
     
