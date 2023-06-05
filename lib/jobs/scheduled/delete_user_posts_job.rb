@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require_dependency 'jobs/scheduled/base'
+#require_dependency 'jobs/scheduled/base'
 
 module Jobs
   class DeleteUserPostsJob < ::Jobs::Scheduled
