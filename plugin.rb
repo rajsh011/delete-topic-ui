@@ -24,8 +24,7 @@ after_initialize do
         SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
          
         # Return a success response
-         res = "Deletion process started for user "+ settings['delete_posts_for_username'] +".It will delete "+ settings['delete_posts_in_single_batch'] +" in every 2 minutes Please wait Before starting again until all posts have been deleted. You can confim this by going user profile page and checking posts created. For more details check log file"
-        [200, {}, [res]]
+        [200, {}, ["Deletion process started for user .It will delete batch of posts in every 2 minutes Please wait Before starting again until all posts have been deleted. You can confim this by going user profile page and checking posts created. For more details check log file"]]
       }
 
     end

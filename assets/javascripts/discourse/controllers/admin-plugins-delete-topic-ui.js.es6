@@ -85,7 +85,7 @@ export default Ember.Controller.extend({
       .catch(error => {
         // Handle the error response
         let response_element = document.querySelector("p.response.notice");
-        response_element.innerHTML= "Error saving settings";
+        response_element.innerHTML= error.responseText;
         console.error('Error saving settings:', error);
 
         if(response_element.classList.contains("hide")){
