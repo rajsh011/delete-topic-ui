@@ -8,7 +8,7 @@ add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
 after_initialize do
     require_dependency File.expand_path("../jobs/scheduled/delete_user_posts.rb", __FILE__)
-    
+
     Discourse::Application.routes.append do
       #get '/admin/plugins/delete_all_posts' => 'delete_user_posts#delete_test'
       get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
@@ -77,7 +77,7 @@ after_initialize do
 
 
   }
- =end
+=end
 
     end
 end
