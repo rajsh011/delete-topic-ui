@@ -24,57 +24,9 @@ after_initialize do
         SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
          
         # Return a success response
-        [200, {}, ["Deletion process started Please wait untill all posts have been deleted."]]
+         res = "Deletion process started for user "+ settings['delete_posts_for_username'] +".It will delete "+ settings['delete_posts_in_single_batch'] +" in every 2 minutes Please wait Before starting again until all posts have been deleted. You can confim this by going user profile page and checking posts created. For more details check log file"
+        [200, {}, [res]]
       }
-
-
-=begin 
-      get '/admin/plugins/delete_all_posts' => proc { |_env|
-      # Execute code specific to the '/test' route
-      username = SiteSetting.delete_posts_for_username
-      user = User.find_by_username_or_email(username)
-
-      if user
-        Post.where(user_id: user.id).destroy_all
-        SiteSetting.delete_posts_for_username = ""
-      [200, {}, ['Deleated all posts for user ']]  
-      else
-      # redirect_to admin_index_path, alert: "User not found."
-      [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
-      end
-
-    } 
-=end
-
-=begin 
-  get '/admin/plugins/delete_all_posts' => proc { |_env|
-  # Execute code specific to the '/test' route
-    uname = SiteSetting.delete_posts_for_username
-    userobj = User.find_by(username: uname)
-    uposts = userobj.posts.order(created_at: :asc) 
-    
-    if userobj
-        #require_dependency File.expand_path("../jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
-        #::Jobs::DeleteUserPosts.enqueue
-        #::Jobs::Scheduled::DeleteUserPosts.enqueue
-
-        # Require the job file to load the job class
-        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'jobs', 'scheduled', 'delete_user_posts')
-
-        # Start the cron job to delete posts for the specified user
-        #::Jobs::Scheduled::DeleteUserPosts.enqueue
-
-        Jobs.enqueue(:delete_user_posts)
-        [200, {}, ['Cron job for deleting user posts has been scheduled']] 
-
-    else
-      # redirect_to admin_index_path, alert: "User not found."
-      [200, {}, ['User does not exist. Please check user name you entered in plugin settings']]
-    end 
-
-
-  }
-=end
 
     end
 end

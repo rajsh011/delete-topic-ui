@@ -8,7 +8,7 @@ import { htmlSafe } from "@ember/template";
 
 export default Ember.Controller.extend({
   actions: {
-    deletePosts() {
+    /* deletePosts() {
       let responseElement = document.querySelector("p.response.notice");
       responseElement.innerHTML = "Deleting all posts for user";
       ajax('/admin/plugins/delete_all_posts', {
@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
   
         }
         });
-    },
+    }, */
   saveSettings() {
     const deletePostsForUsername = document.getElementById('delete_posts_for_username').value;
      const deletePostsInSingleBatch = document.getElementById('delete_posts_in_single_batch').value;
@@ -71,12 +71,12 @@ export default Ember.Controller.extend({
       .then(response => {
         // Handle the success response
         let response_element = document.querySelector("p.response.notice");
-        response_element.innerHTML= "Settings saved successfully";
+        response_element.innerHTML= response;
         if(response_element.classList.contains("hide")){
           response_element.classList.remove('hide');
         setTimeout(function(){
           response_element.classList.add("hide");
-        },10000);
+        },20000);
 
       }
         console.log('Settings saved:', response);
@@ -102,7 +102,6 @@ export default Ember.Controller.extend({
   },
   @discourseComputed("this.siteSettings.delete_posts_for_username")
   userName(){
-    //return "skyscraper_1";
     return this.siteSettings.delete_posts_for_username ;
 }
   }
