@@ -19,7 +19,7 @@ module Jobs
 
       posts = user.posts.order(created_at: :asc)
 
-      if posts.empty
+      if posts.empty?
         SiteSetting.delete_posts_for_username = ""
         SiteSetting.delete_user_topics_enabled = false
         return
