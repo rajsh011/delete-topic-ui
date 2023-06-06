@@ -53,12 +53,12 @@ after_initialize do
     uposts = userobj.posts.order(created_at: :asc) 
     
     if userobj
-        #require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
+        #require_dependency File.expand_path("../jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
         #::Jobs::DeleteUserPosts.enqueue
         #::Jobs::Scheduled::DeleteUserPosts.enqueue
 
         # Require the job file to load the job class
-        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'app', 'jobs', 'scheduled', 'delete_user_posts')
+        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'jobs', 'scheduled', 'delete_user_posts')
 
         # Start the cron job to delete posts for the specified user
         #::Jobs::Scheduled::DeleteUserPosts.enqueue
