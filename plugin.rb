@@ -17,10 +17,6 @@ after_initialize do
         req = Rack::Request.new(env)
         settings = req.params['settings']
 
-        if SiteSetting.delete_user_topics_enabled?
-          [200, {}, ['Please wait deletion process is already running for user ']]
-        end
-
         # Perform the necessary logic to save the settings
         SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
         SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
@@ -28,7 +24,7 @@ after_initialize do
         SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
          
         # Return a success response
-        [200, {}, ["Deletion process started"]]
+        [200, {}, ["Deletion process started Please wait untill all posts have been deleted."]]
       }
 
 
