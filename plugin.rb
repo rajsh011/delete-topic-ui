@@ -14,20 +14,23 @@ after_initialize do
       get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
     #save settings
       get '/admin/plugins/save_settings' => proc { |env|
-        req = Rack::Request.new(env)
-        settings = req.params['settings']
+          req = Rack::Request.new(env)
+          settings = req.params['settings']
+=begin 
+          if SiteSetting.delete_user_topics_enabled
 
-        if SiteSetting.delete_user_topics_enabled
-          [200, {}, ['Please wait deletion process is already running for user ' + SiteSetting.delete_posts_for_username ]]
-        end
-        # Perform the necessary logic to save the settings
-        SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
-        SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
-        SiteSetting.delete_user_topics_enabled = true
-        SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
-         
-        # Return a success response
-        [200, {}, ["Deletion process started"]]
+            [200, {}, ['Please wait deletion process is already running for user ' + SiteSetting.delete_posts_for_username ]]
+            
+          end 
+=end
+          # Perform the necessary logic to save the settings
+          SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
+          SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
+          SiteSetting.delete_user_topics_enabled = true
+          SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
+          
+          # Return a success response
+          [200, {}, ["Deletion process started"]]
       }
 
 
