@@ -2,7 +2,7 @@
 #require_dependency 'jobs/scheduled/base'
 
 module Jobs
-  class DeleteUserPostsJob < ::Jobs::Scheduled
+  class DeleteUserPosts < ::Jobs::Scheduled
     every 2.minutes
 
     def execute(args)

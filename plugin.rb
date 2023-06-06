@@ -6,20 +6,22 @@
 
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 #getting error loding file 
-#require_dependency File.expand_path('../lib/jobs/scheduled/delete_user_posts_job', __FILE__)
+#require_dependency File.expand_path('../jobs/scheduled/delete_user_posts.rb', __FILE__)
 
+=begin 
 Discourse::Application.routes.append do
   # ...
 
   get '/admin/plugins/delete_all_posts' => proc { |_env|
     # Execute code specific to the '/admin/plugins/delete_all_posts' route
-    Jobs::Scheduled::DeleteAllPosts.enqueue
+    Jobs::Scheduled::DeleteUserPosts.enqueue
 
     [200, {}, ['Cron job for deleting all posts has been scheduled']]
   }
 
   # ...
-end
+end 
+=end
 
 Discourse::Application.routes.append do
   get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
@@ -57,7 +59,7 @@ Discourse::Application.routes.append do
   get '/admin/plugins/delete_all_posts' => proc { |_env|
 
   module Jobs
-    class DeleteUserPostsJob < ::Jobs::Scheduled
+    class DeleteUserPostsJ < ::Jobs::Scheduled
       every 2.minutes
   
       def execute(args)
@@ -109,16 +111,16 @@ Discourse::Application.routes.append do
     
     if userobj
         #require_dependency File.expand_path("../app/jobs/scheduled/delete_user_posts_job.rb", __FILE__) 
-        #::Jobs::DeleteUserPostsJob.enqueue
-        #::Jobs::Scheduled::DeleteUserPostsJob.enqueue
+        #::Jobs::DeleteUserPosts.enqueue
+        #::Jobs::Scheduled::DeleteUserPosts.enqueue
 
         # Require the job file to load the job class
-        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'app', 'jobs', 'scheduled', 'delete_user_posts_job')
+        # require_dependency Rails.root.join('plugins', 'delete-topic-ui', 'app', 'jobs', 'scheduled', 'delete_user_posts')
 
         # Start the cron job to delete posts for the specified user
-        #::Jobs::Scheduled::DeleteUserPostsJob.enqueue
+        #::Jobs::Scheduled::DeleteUserPosts.enqueue
 
-        Jobs::Scheduled::DeleteAllPosts.enqueue
+        Jobs::Scheduled::DeleteUserPosts.enqueue
         [200, {}, ['Cron job for deleting user posts has been scheduled']] 
 
     else
