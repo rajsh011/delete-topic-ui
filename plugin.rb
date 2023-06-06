@@ -12,7 +12,7 @@ after_initialize do
     Discourse::Application.routes.append do
       #get '/admin/plugins/delete_all_posts' => 'delete_user_posts#delete_test'
       get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
-    #save settings
+      #save settings
       get '/admin/plugins/save_settings' => proc { |env|
         req = Rack::Request.new(env)
         settings = req.params['settings']
@@ -25,6 +25,7 @@ after_initialize do
          
         # Return a success response
         [200, {}, ["Deletion process started for user .It will delete batch of posts in every 2 minutes Please wait Before starting again until all posts have been deleted. You can confim this by going user profile page and checking posts created. For more details check log file"]]
+        
       }
 
     end
