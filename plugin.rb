@@ -7,6 +7,8 @@
 add_admin_route 'delete_topic_ui.title', 'delete-topic-ui'
 
 after_initialize do
+    require_dependency File.expand_path("../jobs/scheduled/delete_user_posts.rb", __FILE__)
+    
     Discourse::Application.routes.append do
       #get '/admin/plugins/delete_all_posts' => 'delete_user_posts#delete_test'
       get '/admin/plugins/delete-topic-ui' => 'admin/plugins#index'
@@ -15,15 +17,17 @@ after_initialize do
         req = Rack::Request.new(env)
         settings = req.params['settings']
 
+        if SiteSetting.delete_user_topics_enabled
+          [200, {}, ['Please wait deletion process is already running for user ' + SiteSetting.delete_posts_for_username ]]
+        end
         # Perform the necessary logic to save the settings
         SiteSetting.delete_posts_for_username = settings['delete_posts_for_username']
         SiteSetting.delete_posts_in_single_batch = settings['delete_posts_in_single_batch']
-        SiteSetting.delete_user_topics_enabled = settings['delete_user_topics_enabled']
+        SiteSetting.delete_user_topics_enabled = true
         SiteSetting.delete_user_topics_dry_run = settings['delete_user_topics_dry_run'] 
-
-    
+         
         # Return a success response
-        [200, {}, [settings.to_json]]
+        [200, {}, ["Deletion process started"]]
       }
 
 
@@ -45,7 +49,7 @@ after_initialize do
     } 
 =end
 
-
+=begin 
   get '/admin/plugins/delete_all_posts' => proc { |_env|
   # Execute code specific to the '/test' route
     uname = SiteSetting.delete_posts_for_username
@@ -73,7 +77,7 @@ after_initialize do
 
 
   }
-
+ =end
 
     end
 end

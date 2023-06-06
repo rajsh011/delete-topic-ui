@@ -18,7 +18,13 @@ module Jobs
       return unless user.present?
 
       posts = user.posts.order(created_at: :asc)
-      return if posts.empty?
+
+      if posts.empty
+        SiteSetting.delete_posts_for_username = ""
+        SiteSetting.delete_user_topics_enabled = false
+        return
+      end  
+#     return if posts.empty?
 
       deleted_count = 0
       posts.each do |post|
@@ -36,11 +42,12 @@ module Jobs
           end
         end
       end
-
+=begin 
       # Cancel the scheduled job if there are no more posts remaining
       if posts.size <= posts_per_batch
         self.class.cancel_scheduled_job
       end
+=end     
     end
   end
 end
