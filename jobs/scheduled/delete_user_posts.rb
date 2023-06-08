@@ -24,21 +24,25 @@ module Jobs
         return
       end  
       deleted_count = 0
-      posts.each do |post|
-        break if deleted_count >= posts_per_batch
+      begin
+        posts.each do |post|
+          break if deleted_count >= posts_per_batch
 
-        if SiteSetting.delete_user_topics_dry_run?
-          Rails.logger.error("DeleteUserPosts would remove Post ID #{post.id} (#{post.topic.title} - #{post.excerpt}) (dry run mode)")
-        else
-          Rails.logger.error("DeleteUserPosts removing Post ID #{post.id} (#{post.topic.title} - #{post.excerpt})")
-          begin
-            PostDestroyer.new(Discourse.system_user, post).destroy
-            deleted_count += 1
-          rescue StandardError => e
-            Rails.logger.error("Error deleting post ID #{post.id}: #{e.message}")
+          if SiteSetting.delete_user_topics_dry_run?
+            Rails.logger.error("DeleteUserPosts would remove Post ID #{post.id} (dry run mode)")
+          else
+            begin
+              Rails.logger.error("DeleteUserPosts removing Post ID #{post.id} ")
+              PostDestroyer.new(Discourse.system_user, post).destroy
+              deleted_count += 1
+            rescue StandardError => e
+              Rails.logger.error("Error deleting post ID #{post.id}: #{e.message}")
+            end
           end
-        end
-      end   
+        end 
+      rescue StandardError => e
+        Rails.logger.error("Error deleting post in loop")
+      end    
     end
   end
 end
