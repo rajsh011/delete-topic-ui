@@ -16,7 +16,7 @@ module Jobs
       user = User.find_by(username: username)
       return unless user.present?
 
-      posts = user.posts.order(created_at: :asc)
+      posts = user.posts.limit(1000)
 
       if posts.empty?
         SiteSetting.delete_posts_for_username = ""
