@@ -6,7 +6,7 @@ plugins:
     default: false
 
   delete_posts_for_username:
-    default: "Chimonos_Revenge"
+    default: "Soup"
 
   delete_posts_in_single_batch:
     default: 3
