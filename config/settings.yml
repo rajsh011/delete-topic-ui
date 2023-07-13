@@ -1,12 +1,12 @@
 plugins:
   delete_user_topics_enabled:
-    default: false
-
-  delete_user_topics_dry_run:
     default: true
 
+  delete_user_topics_dry_run:
+    default: false
+
   delete_posts_for_username:
-    default: ""
+    default: "soup"
 
   delete_posts_in_single_batch:
-    default: 1000 
+    default: 999
