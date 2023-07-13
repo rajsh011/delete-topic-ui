@@ -9,4 +9,4 @@ plugins:
     default: "Soup"
 
   delete_posts_in_single_batch:
-    default: 3
+    default: 500
